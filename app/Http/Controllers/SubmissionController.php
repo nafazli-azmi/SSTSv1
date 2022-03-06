@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Milestone;
+use App\Models\submission;
 use Illuminate\Http\Request;
 
-class MilestoneController extends Controller
+class SubmissionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class MilestoneController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Milestone  $milestone
+     * @param  \App\Models\submission  $submission
      * @return \Illuminate\Http\Response
      */
-    public function show(Milestone $milestone)
+    public function show(submission $submission)
     {
         //
     }
@@ -52,10 +52,10 @@ class MilestoneController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Milestone  $milestone
+     * @param  \App\Models\submission  $submission
      * @return \Illuminate\Http\Response
      */
-    public function edit(Milestone $milestone)
+    public function edit(submission $submission)
     {
         //
     }
@@ -64,10 +64,10 @@ class MilestoneController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Milestone  $milestone
+     * @param  \App\Models\submission  $submission
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Milestone $milestone)
+    public function update(Request $request, submission $submission)
     {
         //
     }
@@ -75,10 +75,10 @@ class MilestoneController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Milestone  $milestone
+     * @param  \App\Models\submission  $submission
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Milestone $milestone)
+    public function destroy(submission $submission)
     {
         //
     }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMilestonesTable extends Migration
+class CreateSubmissionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateMilestonesTable extends Migration
      */
     public function up()
     {
-        Schema::create('milestones', function (Blueprint $table) {
+        Schema::create('submissions', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->unsignedBigInteger('project_id');
@@ -50,6 +50,6 @@ class CreateMilestonesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('milestones');
+        Schema::dropIfExists('submissions');
     }
 }
