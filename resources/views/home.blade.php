@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-<title>SSTS</title>
+<title>Student Supervision Tracking System</title>
 
 @section('content')
     <!-- Main content -->

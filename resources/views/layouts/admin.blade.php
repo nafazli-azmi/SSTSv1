@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'SSTS') }}</title>
+    <title>@yield('title')</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -84,7 +84,7 @@
             <!-- Brand Logo -->
             <a href="/home" class="brand-link">
                 <!-- <img src="" alt="Logo" class="brand-image img-circle elevation-10" style="opacity: 2"> -->
-                <span class="brand-text font-weight-light">SSTS</span>
+                <span class="brand-text font-weight-light"> SSTS</span>
             </a>
         
             <!-- sidebar -->
@@ -150,7 +150,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Dashboard</h1>
+                            <h1 class="m-0">Student Supervision Tracking System</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -166,7 +166,7 @@
             <!-- Main content -->
             <div class="content">
                 <div class="container-fluid">
-
+                @include('partials.alert')
                 @yield('content')
                 </div><!-- /.container-fluid -->
             </div>
