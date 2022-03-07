@@ -19,7 +19,7 @@ Permissions
     </div>
     <!-- /.card-header -->
     <div class="card-body table-responsive p-0">
-        <table class="table  table-striped">
+        <table class="table bootstrap status table-striped">
             <thead class="bg-info text-white">
                 <tr>
                     <th>ID</th>
