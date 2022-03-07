@@ -15,7 +15,7 @@ class PermissionController extends Controller
      */
     public function __construct(Permission $permission){
         $this->permission = $permission;
-        $this->middleware("auth");
+      //  $this->middleware("auth");
    //     $this->middleware(['auth', 'role_or_permission:ADMIN|Create Role|Create Permission']); /** only authenticated users can use this controller */
     }
 
@@ -27,12 +27,22 @@ class PermissionController extends Controller
     public function index()
     {
         $permissions = $this->permission::all();
-
-
         return view("permission.index", ['permissions' => $permissions]);
-
+    }
+    
+    public function getAllPermissions(){
+        $permissions = $this->permission::all();
+        return response()->json([  
+            'permissions' => $permissions
+        ], 200);
     }
 
+    public function getAll(){
+        $permissions = $this->permission->all();
+        return response()->json([
+            'permissions' => $permissions
+        ],200);
+    }
     /**
      * Show the form for creating a new resource.
      *

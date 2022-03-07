@@ -30,3 +30,10 @@ Route::get('/password/change', 'UserController@getPassword')->name('userGetPassw
 Route::post('/password/change', 'UserController@postPassword')->name('userPostPassword');
 
 Route::resource('permission', 'PermissionController');
+Route::resource('role', 'RoleController');
+
+//////////////////////////// axios request
+Route::get('/getAllPermission', 'PermissionController@getAllPermissions');
+Route::post("/postRole", "RoleController@store");
+Route::get("/getAllRoles", "RoleController@getAll");
+Route::get("/getAllPermissions", "PermissionController@getAll");
