@@ -17,23 +17,37 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::group(['middleware'=>'auth'], function(){
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+    Route::resource('user', 'UserController');
+    
+    Route::get('profile', 'UserController@profile')->name('user.profile');
+    Route::post('profile', 'UserController@postProfile')->name('user.postProfile');    
+    
+    Route::get('/password/change', 'UserController@getPassword')->name('userGetPassword');
+    Route::post('/password/change', 'UserController@postPassword')->name('userPostPassword');
+});
+
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//denying url bypass
+Route::group(['middleware' => ['auth', 'role_or_permission:ADMIN|Create Role|Create Permission']], function(){
+    Route::resource('role', 'RoleController');
+    Route::resource('permission', 'PermissionController');
+});
 
-Route::resource('user', 'UserController');
-
-Route::get('profile', 'UserController@profile')->name('user.profile');
-Route::post('profile', 'UserController@postProfile')->name('user.postProfile');    
-
-Route::get('/password/change', 'UserController@getPassword')->name('userGetPassword');
-Route::post('/password/change', 'UserController@postPassword')->name('userPostPassword');
-
-Route::resource('permission', 'PermissionController');
-Route::resource('role', 'RoleController');
 
 //////////////////////////// axios request
-Route::get('/getAllPermission', 'PermissionController@getAllPermissions');
-Route::post("/postRole", "RoleController@store");
-Route::get("/getAllRoles", "RoleController@getAll");
-Route::get("/getAllPermissions", "PermissionController@getAll");
+Route::get('/getAllPermission', 'PermissionController@getAllPermissions'); //view permission
+
+Route::post("/postRole", "RoleController@store"); //create new role
+
+Route::get("/getAllRoles", "RoleController@getAll");                //Create new user form
+Route::get("/getAllPermissions", "PermissionController@getAll");    //
+Route::get("/getAllClusters", "ClusterController@getAll");          //
+
+Route::get("/getAllUsers", "UserController@getAll");    //view user list
+
+Route::post('/account/create', 'UserController@store');         //create user
+Route::put('/account/update/{id}', 'UserController@update');    //update user

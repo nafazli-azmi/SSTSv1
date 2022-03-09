@@ -37,45 +37,20 @@
                 </li>
             </ul>
 
-            <div class="container">
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="{{ route('logout') }}" class="nav-link"                             
+                onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
+                <i class="fas fa-power-off" style="color: #F13E18;"></i>
+                    Logout
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </a>
+            </li>
+            </ul>
         </nav>
         <!-- /.navbar -->
 
@@ -92,81 +67,120 @@
                     <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="info">
-                        <a href="#" class="d-block">{{ auth()->user()->name }}</a>
+                        <a href="#" class="d-block text-center">{{ auth()->user()->name }}</a>
                     </div>
                 </div>
 
                     <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                    <li class="nav-item">
-                        <a href="/home" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                            <p>Dashboard</p>
-                        </a>
-                    </li>
+                        <!-- dashboard -->
+                        <li class="nav-item">
+                            <a href="/home" class="nav-link">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>Dashboard</p>
+                            </a>
+                        </li>
 
-
-            <li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-cogs"></i>
-                  <p>
-                    Management
-                    <i class="right fas fa-angle-left"></i>
-                  </p>
-              </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="{{ route('role.index')}}" class="nav-link">
-                            <i class="fas fa-user-tie nav-icon"></i>
-                                <p>Roles</p>
-                        </a>
-                    </li>
-                    
-                    <li class="nav-item">
-                        <a href="{{ route('permission.index')}}" class="nav-link">
-                            <i class="fas fa-user-lock nav-icon"></i>
-                                <p>Permissions</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="{{ route('user.index') }}" class="nav-link">
-                          <i class="fas fa-users-cog nav-icon"></i>
-                          <p>Users</p>
-                      </a>
-                    </li> 
-                </ul>
-            </li>
-                    
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-file-signature"></i>
-                                    <p>Project List</p>
+                        @can('Create User')
+                        <!-- //Management -->
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-cogs"></i>
+                                <p>
+                                    Management
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            
+    
+                            <ul class="nav nav-treeview">
+                                @can('Create Role')
+                                <li class="nav-item">
+                                    <a href="{{ route('role.index')}}" class="nav-link">
+                                        <i class="fas fa-user-tie nav-icon"></i>
+                                            <p>Roles</p>
+                                    </a>
+                                </li>
+                                
+                                <li class="nav-item">
+                                    <a href="{{ route('permission.index')}}" class="nav-link">
+                                        <i class="fas fa-user-lock nav-icon"></i>
+                                            <p>Permissions</p>
+                                    </a>
+                                </li>
+                                @endcan
+                                <li class="nav-item">
+                                <a href="{{ route('user.index') }}" class="nav-link">
+                                    <i class="fas fa-users-cog nav-icon"></i>
+                                    <p>Users</p>
                                 </a>
-                            </li>
+                                </li> 
+                            </ul>
+                        </li>
+                        @endcan
 
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-user-tie"></i>
-                                    <p>Lecturers</p>
-                                </a>
-                            </li>
+                        @can('Create Report')
+                        <!-- proj -->
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-file-signature"></i>
+                                <p>Project List</p>
+                            </a>
+                        </li>
 
+                        <!-- Lect -->
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-user-tie"></i>
+                                <p>Lecturers</p>
+                            </a>
+                        </li>
 
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-file-signature"></i>
-                                <p>Students</p>
-                                </a>
-                            </li>
+                        <!-- stud -->
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-file-signature"></i>
+                            <p>Students</p>
+                            </a>
+                        </li>
 
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-file-signature"></i>
-                                <p>Report</p>
-                                </a>
-                            </li>
+                        <!-- rep -->
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-file-signature"></i>
+                            <p>Analytics</p>
+                            </a>
+                        </li>
+                        @endcan
 
+                        @can('Create Meeting')
+                        <!-- meet -->
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-file-signature"></i>
+                            <p>Meeting</p>
+                            </a>
+                        </li>
+
+                        <!-- subs -->
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-file-signature"></i>
+                            <p>Submission</p>
+                            </a>
+                        </li>
+                        @endcan
+
+                        @can('Create Progress')
+                        <!-- prog -->
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-file-signature"></i>
+                            <p>Progress</p>
+                            </a>
+                        </li>
+                        @endcan
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -209,12 +223,7 @@
     <!-- content wrapper -->
 
 
-  <!-- jQuery -->
-  <script src="plugins/jquery/jquery.min.js"></script>
-  <!-- Bootstrap 4 -->
-  <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- AdminLTE App -->
-  <script src="dist/js/adminlte.min.js"></script>
+
 
 </body>
 

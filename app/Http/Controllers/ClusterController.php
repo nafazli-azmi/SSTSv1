@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\cluster;
+use App\Models\Cluster;
 use Illuminate\Http\Request;
 
 class ClusterController extends Controller
 {
+    public function __construct(Cluster $cluster)
+    {
+        $this->cluster = $cluster;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,6 +21,12 @@ class ClusterController extends Controller
         //
     }
 
+    public function getAll(){
+        $clusters = $this->cluster->all();
+        return response()->json([
+            'clusters' => $clusters
+        ],200);
+    }
     /**
      * Show the form for creating a new resource.
      *

@@ -2,10 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+    public function __construct(User $user)
+    {
+        $this->middleware("auth");
+        $this->user = $user;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +21,24 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = $this->user::all();
+        return view('user.index', ['users' => $users]);
+    }
+
+    /**
+     * get ALL USER - User index - vue
+     */
+    public function getAll(){
+        $users = User::latest()->get();
+        $users->transform(function($user){
+            $user->role = $user->getRoleNames()->first();
+            $user->userPermissions = $user->getPermissionNames(); 
+            return $user;
+        });
+
+        return response()->json([ 
+            'users' => $users
+        ], 200);
     }
 
     /**
@@ -34,7 +59,30 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|string',
+            'password' => 'required|alpha_num|min:8',
+            'role' => 'nullable',
+            'cluster' => 'nullable',
+            'email' => 'required|email|unique:users',
+        ]);
+
+        $user = new User();
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->role_id = $request->role;
+        $user->cluster_id = $request->cluster;
+        $user->assignRole($request->role);
+
+        if($request->has('permissions')){
+            $user->givePermissionTo($request->permissions);
+        }
+        $user->save();
+
+        return response()->json("User Created", 200);
+
     }
 
     /**
@@ -68,7 +116,44 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|string',
+            'password' => 'nullable|alpha_num|min:8',
+            'role' => 'required',
+            'cluster' => 'required',
+            'email' => 'required|email|unique:users,email,'.$id //validate email against other users
+        ]);
+
+        $user = User::findOrFail($id);
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->cluster_id = $request->cluster;
+
+        if($request->has('password')){
+            $user->password = bcrypt($request->password);
+        }
+
+        if($request->has('role')){                  //get new role
+            $userRole = $user->getRoleNames();
+            foreach($userRole as $role){            //remove old role
+                $user->removeRole($role);
+            }
+            $user->assignRole($request->role);      //assign new role
+        }
+
+        if($request->has('permissions')){                  //get new role
+            $userPermissions = $user->getPermissionNames();
+            foreach($userPermissions as $permission){            //remove old role
+                $user->revokePermissionTo($permission);
+            }
+            $user->givePermissionTo($request->permissions);      //assign new role
+        }
+        
+        $user->save();
+
+        return response()->json("User Updated",200);
+
     }
 
     /**
