@@ -266,7 +266,7 @@ components: { loading },
         deleteUser(user){
             swal.fire({
                 title: 'Are you sure?',
-                    text: user.name + " will be deleted permanently!",
+                    text: user.name + " will be deleted!",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -277,13 +277,13 @@ components: { loading },
                     axios.delete('/delete/user/' + user.id ).then(() =>{
                         toast.fire({
                             icon: 'success',
-                            title: user.name +'has been deleted.'
+                            title: user.name +" has been deleted."
                         })
                         Fire.$emit("loadUser");
                     }).catch(()=>{
                         toast.fire({
                             icon: 'error',
-                            title: user.name +'was unable to be deleted. Try again.'                        
+                            title: user.name +" was unable to be deleted. Try again."                        
                         })
                     })
                 }   

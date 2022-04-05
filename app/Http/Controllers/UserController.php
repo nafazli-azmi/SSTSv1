@@ -198,5 +198,13 @@ public function postPassword(Request $request){
     return redirect()->back()->with('success', 'Password Successfully Changed');
 }
 
+public function delete($id){
+    $user = User::findOrFail($id);
+
+    $user->delete();
+
+    return response()->json('user deleted',200);
+
+}
 
 }
