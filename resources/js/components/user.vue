@@ -13,11 +13,11 @@
                         </li>
                         <li class="nav-item">
                             <div class="input-group mt-0 input-group-md" style="width: 350px;">
-                                <!-- <input type="text" name="table_search" v-model="searchWord" class="form-control float-right" placeholder="Search by name,email"> -->
+                                <input type="text" name="table_search" v-model="searchWord" class="form-control float-right" placeholder="Search by name,email">
 
-                                <!-- <div class="input-group-append">
+                                <div class="input-group-append">
                                     <button type="submit" class="btn btn-md" @click="search"><i class="fas fa-search"></i></button>
-                                </div> -->
+                                </div>
                             </div>
                         </li>
                     </ul>

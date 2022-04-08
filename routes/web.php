@@ -52,3 +52,4 @@ Route::get("/getAllUsers", "UserController@getAll");    //view user list
 Route::post('/account/create', 'UserController@store');         //create user
 Route::put('/account/update/{id}', 'UserController@update');    //update user
 Route::delete('/delete/user/{id}', 'UserController@delete');    //softdelete
+Route::get('/search/user', 'UserController@search');            //search user

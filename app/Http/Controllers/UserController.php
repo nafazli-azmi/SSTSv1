@@ -207,4 +207,22 @@ public function delete($id){
 
 }
 
+public function search(Request $request){
+    $searchWord = $request->get('s');
+    $users =User::where(function($query) use ($searchWord){
+        $query->where('name', 'LIKE', "%$searchWord%")->
+        orWhere('email', 'LIKE', "%$searchWord%");
+    })->latest()->get();
+
+    $users->transform(function($user){
+        $user->role = $user->getRoleNames()->first();
+        $user->userPermissions = $user->getPermissionNames(); 
+        return $user;
+    });
+
+    return response()->json([
+        'users' => $users
+    ], 200);
+}
+
 }
