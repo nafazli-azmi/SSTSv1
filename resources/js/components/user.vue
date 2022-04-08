@@ -6,6 +6,9 @@
                     <i class="fas fa-users mr-2 fa-lg" style="color: #339af0;"></i>
                     Users
                 </h3>
+                    <button class="btn btn-md btn-primary ml-2" @click="getLects()" > Lectures</button>
+                    <button class="btn btn-md btn-primary ml-2" @click="getStuds()" > Students</button>
+
                 <div class="card-tools">
                     <ul class="nav nav-pills ml-auto">
                         <li class="nav-item mr-1">
@@ -207,6 +210,28 @@ components: { loading },
             this.form.role = user.roles[0].id;
             this.form.permissions = user.userPermissions
             $("#createUser").modal("show");
+        },
+        getLects(){
+            this.loading = true;
+            axios.get("/getLects")
+            .then((response)=>{ 
+                this.loading = false;
+                this.users = response.data.users
+            }).catch(()=>{
+                this.loading = false;
+                this.$toastr.e("Unable to load","Error");
+            })            
+        },
+        getStuds(){
+            this.loading = true;
+            axios.get("/getStuds")
+            .then((response)=>{ 
+                this.loading = false;
+                this.users = response.data.users
+            }).catch(()=>{
+                this.loading = false;
+                this.$toastr.e("Unable to load","Error");
+            })            
         },
         getUsers(){
             this.loading = true;

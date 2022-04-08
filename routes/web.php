@@ -48,6 +48,8 @@ Route::get("/getAllPermissions", "PermissionController@getAll");    //
 Route::get("/getAllClusters", "ClusterController@getAll");          //
 
 Route::get("/getAllUsers", "UserController@getAll");    //view user list
+Route::get("/getLects", "UserController@getLects");    //view user list
+Route::get("/getStuds", "UserController@getStuds");    //view user list
 
 Route::post('/account/create', 'UserController@store');         //create user
 Route::put('/account/update/{id}', 'UserController@update');    //update user

@@ -41,6 +41,31 @@ class UserController extends Controller
         ], 200);
     }
 
+    public function getLects(){
+        $users = User::role('SUPERVISOR')->get();
+        $users->transform(function($user){
+            $user->role = $user->getRoleNames()->first();
+            $user->userPermissions = $user->getPermissionNames(); 
+            return $user;
+        });
+
+        return response()->json([ 
+            'users' => $users
+        ], 200);
+    }
+
+    public function getStuds(){
+        $users = User::role('STUDENT')->get();
+        $users->transform(function($user){
+            $user->role = $user->getRoleNames()->first();
+            $user->userPermissions = $user->getPermissionNames(); 
+            return $user;
+        });
+
+        return response()->json([ 
+            'users' => $users
+        ], 200);
+    }
     /**
      * Show the form for creating a new resource.
      *
