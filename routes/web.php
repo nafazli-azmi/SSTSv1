@@ -22,6 +22,7 @@ Route::group(['middleware'=>'auth'], function(){
 
     Route::resource('user', 'UserController');
     Route::resource('lecturer', 'LecturersController');
+    Route::resource('student', 'StudentsController');
     
     Route::get('profile', 'UserController@profile')->name('user.profile');
     Route::post('profile', 'UserController@postProfile')->name('user.postProfile');    
