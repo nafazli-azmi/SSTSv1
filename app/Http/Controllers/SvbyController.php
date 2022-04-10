@@ -82,4 +82,16 @@ class SvbyController extends Controller
     {
         //
     }
+
+    public function assign(Request $request){
+        $svby = new Svby();
+        $svby->student_id = $request->id;       
+        $svby->sv_id = $request->asgnSV;
+
+        $svby->save();
+
+        return response()->json("User Created", 200);
+
+    }
+
 }

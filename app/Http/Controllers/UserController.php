@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Svby;
+use App\Models\Cluster;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -42,15 +45,16 @@ class UserController extends Controller
     }
 
     public function getLects(){
-        $users = User::role('SUPERVISOR')->get();
-        $users->transform(function($user){
-            $user->role = $user->getRoleNames()->first();
-            $user->userPermissions = $user->getPermissionNames(); 
-            return $user;
+        $lects = User::role('SUPERVISOR')->get();
+        $lects->transform(function($lect){
+            $lect->role = $lect->getRoleNames()->first();
+            $lect->userPermissions = $lect->getPermissionNames(); 
+            $lect->cluster_id = Cluster::find($lect->cluster_id)->name;
+            return $lect;
         });
 
         return response()->json([ 
-            'users' => $users
+            'users' => $lects
         ], 200);
     }
 
@@ -58,10 +62,45 @@ class UserController extends Controller
         $users = User::role('STUDENT')->get();
         $users->transform(function($user){
             $user->role = $user->getRoleNames()->first();
-            $user->userPermissions = $user->getPermissionNames(); 
+            $user->userPermissions = $user->getPermissionNames();
+            $user->sv_id = Svby::first()->select('sv_id')->where('student_id', $user->id)->get();
+            $user->sv_name = User::first()->select('name')->where('id', $user->sv_id)->get();
+            $user->cluster_id = Cluster::find($user->cluster_id)->name;
             return $user;
         });
+ 
+// $pandoras = User::latest()->select('id','name');
 
+
+        // $users->transform(function($user){
+        //     $user->sv_id = Svby::first()->select('sv_id')->where('student_id', $user->id)->get();
+        //     // $user -> svname = User::latest()->select('name')->where('id', $user->svid)->get();
+        //     // $user->sv_name = User::first(($user->sv_id))->select('name');                 
+            
+
+
+        //     return $user;
+        // });       
+
+        // $users->transform(function($user){
+        //     $user -> svname = User::latest()->select('name as svname')->where('id', $user->svid)->get();
+        //     return $user;
+        // }); 
+
+        //  $users->transform(function($user){
+        //      $user->sv_name = User::first($user->sv_id)->select('name');                 
+        //      return $user;
+        //  });
+        
+    //     $user->svid = Svby::first()->select('sv_id')->where('student_id', $user->id)->get();
+
+    //   $users->transform(function($user){
+
+    //           $user->svname = User::find($user->svid)->name;
+    //           return $user;
+    //          });
+
+        
         return response()->json([ 
             'users' => $users
         ], 200);
@@ -100,6 +139,7 @@ class UserController extends Controller
         $user->role_id = $request->role;
         $user->cluster_id = $request->cluster;
         $user->assignRole($request->role);
+
 
         if ($request->role == 1) {
             $user->givePermissionTo('Create User', 'Create Role', 'Create Permission', 'Create Report', 'Create Cluster', 'Create Category');
@@ -258,5 +298,7 @@ public function search(Request $request){
         'users' => $users
     ], 200);
 }
+
+
 
 }
