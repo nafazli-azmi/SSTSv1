@@ -101,12 +101,17 @@ class UserController extends Controller
         $user->cluster_id = $request->cluster;
         $user->assignRole($request->role);
 
-        if($request->has('permissions')){
-            $user->givePermissionTo($request->permissions);
+        if ($request->role == 1) {
+            $user->givePermissionTo('Create User', 'Create Role', 'Create Permission', 'Create Report', 'Create Cluster', 'Create Category');
+        } elseif ($request->role == 2) {
+            $user->givePermissionTo('Create User', 'Create Meeting', 'Create Submission');
+        } elseif ($request->role == 3) {
+            $user->givePermissionTo('Create Progress', 'Create Meeting', 'Create Submission');
         }
 
-        //
-        dd($request->role);
+        // if($request->has('permissions')){
+        //     $user->givePermissionTo($request->permissions);
+        // }
 
         $user->save();
 

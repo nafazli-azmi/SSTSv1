@@ -115,19 +115,6 @@
                                 ></b-form-select>
                                 <has-error :form="form" field="role"></has-error>
                             </div>
-
-                            <!-- form permission -->
-                            <b-form-group label="Assign Permissions">
-                                <b-form-checkbox
-                                    v-for="option in permissions"
-                                    v-model="form.permissions"
-                                    :key="option.name"
-                                    :value="option.name"
-                                    name="flavour-3a"
-                                >
-                                    {{ option.name }}
-                                </b-form-checkbox>
-                            </b-form-group>   
                         </div>
 
                         <!-- footer submit/update -->

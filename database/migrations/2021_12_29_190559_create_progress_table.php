@@ -26,10 +26,10 @@ class CreateProgressTable extends Migration
                 ->on('projects')
                 ->onDelete('cascade');
 
-            $table->unsignedBigInteger('task_id');
-            $table->foreign('task_id')
+            $table->unsignedBigInteger('submission_id');
+            $table->foreign('submission_id')
                 ->references('id')
-                ->on('milestones')
+                ->on('submissions')
                 ->onDelete('cascade');
 
             $table->integer('sv_id');
