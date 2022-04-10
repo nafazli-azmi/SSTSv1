@@ -1,7 +1,6 @@
 require('./bootstrap.js');
 
 
-
 import 'bootstrap';
 
 
@@ -24,7 +23,10 @@ Vue.component('role', require('./components/role.vue').default)
 
 Vue.component('user', require('./components/user.vue').default)
 
-Vue.component('loading', require('./components/loading.vue').default);
+Vue.component('loading', require('./components/loading.vue').default)
+
+Vue.component('lect', require('./components/lect.vue').default)
+
 
 //VFORM
 import { Form, HasError, AlertError } from 'vform'

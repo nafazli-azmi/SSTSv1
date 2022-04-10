@@ -131,7 +131,7 @@
 
                         <!-- Lect -->
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('lecturer.index') }}" class="nav-link">
                             <i class="nav-icon fas fa-user-tie"></i>
                                 <p>Lecturers</p>
                             </a>

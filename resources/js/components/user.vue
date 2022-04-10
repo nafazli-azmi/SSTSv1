@@ -6,7 +6,8 @@
                     <i class="fas fa-users mr-2 fa-lg" style="color: #339af0;"></i>
                     Users
                 </h3>
-                    <button class="btn btn-md btn-primary ml-2" @click="getLects()" > Lectures</button>
+                    <button class="btn btn-md btn-primary ml-2" @click="getUsers()" > All Users</button>
+                    <button class="btn btn-md btn-primary ml-2" @click="getLects()" > Lecturers</button>
                     <button class="btn btn-md btn-primary ml-2" @click="getStuds()" > Students</button>
 
                 <div class="card-tools">

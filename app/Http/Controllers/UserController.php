@@ -104,6 +104,10 @@ class UserController extends Controller
         if($request->has('permissions')){
             $user->givePermissionTo($request->permissions);
         }
+
+        //
+        dd($request->role);
+
         $user->save();
 
         return response()->json("User Created", 200);
