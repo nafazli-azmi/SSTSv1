@@ -17,7 +17,7 @@
                 <p>Ongoing Projects</p>
               </div>
               <div class="icon">
-                <i class="ion ion-bag"></i>
+              <i class="fas fa-project-diagram"></i>
               </div>
               <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -32,7 +32,7 @@
                 <p>Lecturers</p>
               </div>
               <div class="icon">
-                <i class="fas fa-user-tie"></i>
+              <i class="nav-icon fas fa-user-secret"></i>
               </div>
               <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -47,7 +47,7 @@
                 <p>Active Students</p>
               </div>
               <div class="icon">
-                <i class="ion ion-person-add"></i>
+              <i class="nav-icon fas fa-user-tie"></i>
               </div>
               <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -62,7 +62,7 @@
                 <p>Completed Projects</p>
               </div>
               <div class="icon">
-                <i class="ion ion-pie-graph"></i>
+              <i class="fas fa-file-archive"></i>
               </div>
               <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>

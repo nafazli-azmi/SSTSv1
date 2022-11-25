@@ -39,7 +39,7 @@
                             <td>{{ user.name }}</td>
                             <td>{{ user.cluster_id}}</td>
                             <td>Project Title</td>
-                            <td>{{ user.sv_name}}</td>
+                            <td>{{ user.sv_id}}</td>
                             <td>
                                 <button class="btn btn-sm btn-info" @click="assignMode(user)"> <i class="fas fa-user-astronaut"></i> Assign Supervisor</button>
                                 <!-- <button  class="btn btn-sm btn-warning" @click="editUser(user)"> <i class="fa fa-edit"></i> Edit</button>
@@ -162,7 +162,7 @@ components: { loading },
             $("#assignSV").modal("show");
         },
         assignSV(){
-            this.form.post("/assign/sv").then((response)=>{
+            this.form.put("/assign/sv").then((response)=>{
                 this.$toastr.s("User updated successfully","Success");
                 Fire.$emit("loadUser");
                 $("#assignSV").modal("hide");

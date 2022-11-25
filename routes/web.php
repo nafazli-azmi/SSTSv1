@@ -23,7 +23,9 @@ Route::group(['middleware'=>'auth'], function(){
     Route::resource('user', 'UserController');
     Route::resource('lecturer', 'LecturersController');
     Route::resource('student', 'StudentsController');
+    Route::resource('project', 'ProjectController');
     
+
     Route::get('profile', 'UserController@profile')->name('user.profile');
     Route::post('profile', 'UserController@postProfile')->name('user.postProfile');    
     
@@ -57,5 +59,5 @@ Route::post('/account/create', 'UserController@store');         //create user
 Route::put('/account/update/{id}', 'UserController@update');    //update user
 Route::delete('/delete/user/{id}', 'UserController@delete');    //softdelete
 Route::get('/search/user', 'UserController@search');            //search user
-Route::post('/assign/sv', 'SvbyController@assign');
+Route::put('/assign/sv', 'SvbyController@assign');
 

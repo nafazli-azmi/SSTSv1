@@ -54,7 +54,7 @@ class UserController extends Controller
         });
 
         return response()->json([ 
-            'users' => $lects
+            'lects' => $lects
         ], 200);
     }
 

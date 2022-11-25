@@ -124,7 +124,7 @@
                         <!-- proj -->
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-file-signature"></i>
+                            <i class="nav-icon fas fa-project-diagram"></i>
                                 <p>Project List</p>
                             </a>
                         </li>
@@ -132,7 +132,7 @@
                         <!-- Lect -->
                         <li class="nav-item">
                             <a href="{{ route('lecturer.index') }}" class="nav-link">
-                            <i class="nav-icon fas fa-user-tie"></i>
+                            <i class="nav-icon fas fa-user-secret"></i>
                                 <p>Lecturers</p>
                             </a>
                         </li>
@@ -140,7 +140,7 @@
                         <!-- stud -->
                         <li class="nav-item">
                             <a href="{{ route('student.index') }}" class="nav-link">
-                            <i class="nav-icon fas fa-file-signature"></i>
+                            <i class="nav-icon fas fa-user-tie"></i>
                             <p>Students</p>
                             </a>
                         </li>
@@ -154,11 +154,21 @@
                         </li>
                         @endcan
 
+                        @can('Create Progress')
+                        <!-- prog -->
+                        <li class="nav-item">
+                            <a href="{{ route('project.index') }}" class="nav-link">    
+                            <i class="nav-icon fas fa-project-diagram"></i>
+                            <p>Project</p>
+                            </a>
+                        </li>
+                        @endcan
+
                         @can('Create Meeting')
                         <!-- meet -->
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-file-signature"></i>
+                            <i class="nav-icon fas fa-headset"></i>
                             <p>Meeting</p>
                             </a>
                         </li>
@@ -166,7 +176,7 @@
                         <!-- subs -->
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-file-signature"></i>
+                            <i class="nav-icon fas fa-file-import"></i>
                             <p>Submission</p>
                             </a>
                         </li>
@@ -176,7 +186,7 @@
                         <!-- prog -->
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-file-signature"></i>
+                            <i class="nav-icon fas fa-chart-line"></i>
                             <p>Progress</p>
                             </a>
                         </li>
