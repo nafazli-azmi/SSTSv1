@@ -4,7 +4,7 @@
             <div class="card-header ui-sortable-handle" style="cursor: move;">
                 <h3 class="card-title">
                     <i class="fas fa-users mr-2 fa-lg" style="color: #339af0;"></i>
-                    Students List
+                    Lecturers List
                 </h3>
                 <div class="card-tools">
                     <ul class="nav nav-pills ml-auto">
@@ -24,6 +24,7 @@
                 <table class="table table-bordered">
                     <thead class="bg-primary text-white">
                         <tr>
+                            <th>No</th>
                             <th>ID</th>
                             <th>Name</th>
                             <th>Cluster</th>
@@ -34,15 +35,16 @@
                     </thead>
                     <tbody>
                         <tr v-for="user in users" :key="user.id">
+                            <td>{{ user.newid }}</td>
                             <td>{{ user.id }}</td>
                             <td>{{ user.name }}</td>
-                            <td>{{ user.cluster_id}}</td>
+                            <td>{{ user.cluster_id }}</td>
                             <td>
                                 <!-- <button class="btn btn-sm btn-info" @click="assignMode(user)"> <i class="fas fa-user-astronaut"></i> Assign Supervisor</button> -->
                                 <!-- <button  class="btn btn-sm btn-warning" @click="editUser(user)"> <i class="fa fa-edit"></i> Edit</button>
                                 <button  class="btn btn-sm btn-danger" @click="deleteUser(user)"> <i class="fa fa-trash"></i> Delete </button> -->
                             </td>
-                            <td>st.no</td>
+                            <td>{{ user.nostu }}</td>
 
                         </tr>
                     </tbody>
@@ -69,6 +71,8 @@
 </template>
 
 <script>
+
+//for reference error $ not defined
 import loading from './loading.vue';
 export default {
 
@@ -76,7 +80,9 @@ components: { loading },
     data(){
         return {
             loading: false, 
-
+            searchWord: '',
+            svby:{},
+            svbies:[],
             user: {},
             users: [],
         }//return
@@ -87,14 +93,22 @@ components: { loading },
             axios.get("/getLects")
             .then((response)=>{ 
                 this.loading = false;
-                this.users = response.data.lects
+                this.users = response.data.users
             }).catch(()=>{
                 this.loading = false;
                 this.$toastr.e("Unable to load","Error");
             })
         },
+
+        getSVby(){
+             axios.get('/getSVby').then((response)=>{
+                this.svbies = response.data.svbies
+            });           
+        },
     },//methods
     created(){
+        this.getSVby();
+
         this.getLects();
     }//created
 }

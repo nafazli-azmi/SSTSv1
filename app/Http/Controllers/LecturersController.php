@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Lecturers;
+use App\Models\Cluster;
 use Illuminate\Http\Request;
 
 class LecturersController extends Controller
@@ -13,17 +14,14 @@ class LecturersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
- 
-        $users = User::role('SUPERVISOR')->get();
-        $users->transform(function($user){
-            $user->role = $user->getRoleNames()->first();
-            $user->userPermissions = $user->getPermissionNames(); 
-            return $user;
-        });
-        return view('lect.index', ['users' => $users]);
-    }
+    
+
+
+     public function index()
+     {
+
+         return view('lect.index');
+     }
 
     /**
      * Show the form for creating a new resource.

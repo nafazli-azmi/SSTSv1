@@ -23,6 +23,7 @@
 
         </div>
         <div class="modal-footer justify-content-between">
+            <b-button variant="primary" class="btn-lg btn-primary">dsdsd</b-button>
             <b-button type="submit" variant="primary" class="btn-lg btn-primary" v-if="!dis" disabled><b-spinner small type="grow"></b-spinner>Creating Role</b-button>
             <button type="submit"  v-if="dis" @click.prevent="createRole()" class="btn btn-lg btn-primary"><i class="fas fa-save"></i> Save Role</button>
         </div>

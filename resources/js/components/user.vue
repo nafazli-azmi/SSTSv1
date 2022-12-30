@@ -31,6 +31,7 @@
                 <table class="table table-bordered">
                     <thead :style="bgPurple" class=" text-white">
                         <tr>
+                            <th>No.</th>
                             <th>ID</th>
                             <th>Name</th>
                             <th>Role</th>
@@ -41,6 +42,7 @@
                     </thead>
                     <tbody>
                         <tr v-for="user in users" :key="user.id">
+                            <td> {{ user.newid }}</td>
                             <td>{{ user.id }}</td>
                             <td>{{ user.name }}</td>
                             <td>{{ user.role }}</td>
@@ -157,6 +159,7 @@ components: { loading },
             load: true,  //button create
             user: {},           
             users: [],
+            svbies: [],
             roles: [],
             permissions: [],
             clusters: [],
@@ -310,7 +313,7 @@ components: { loading },
         this.getUsers();
         this.getRoles();
         this.getPermissions();
-        
+
         Fire.$on('loadUser', () => {
             this.getUsers();
         });

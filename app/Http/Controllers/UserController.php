@@ -33,9 +33,11 @@ class UserController extends Controller
      */
     public function getAll(){
         $users = User::latest()->get();
+        $this->count = 1;
         $users->transform(function($user){
             $user->role = $user->getRoleNames()->first();
             $user->userPermissions = $user->getPermissionNames(); 
+            $user->newid = $this->count++;
             return $user;
         });
 
@@ -45,27 +47,32 @@ class UserController extends Controller
     }
 
     public function getLects(){
-        $lects = User::role('SUPERVISOR')->get();
-        $lects->transform(function($lect){
-            $lect->role = $lect->getRoleNames()->first();
-            $lect->userPermissions = $lect->getPermissionNames(); 
-            $lect->cluster_id = Cluster::find($lect->cluster_id)->name;
-            return $lect;
+        $users = User::role('SUPERVISOR')->get();
+        $this->count = 1;
+        $users->transform(function($user){
+            $user->role = $user->getRoleNames()->first();
+            $user->userPermissions = $user->getPermissionNames(); 
+            $user->cluster_id = Cluster::find($user->cluster_id)->name;
+            $user->newid = $this->count++;
+            $user->nostu = Svby::select('student_id')->where('sv_id',$user->id)->count();
+            return $user;
         });
 
         return response()->json([ 
-            'users' => $lects
+            'users' => $users
         ], 200);
     }
 
     public function getStuds(){
         $users = User::role('STUDENT')->get();
+        $this->count = 1;
         $users->transform(function($user){
             $user->role = $user->getRoleNames()->first();
             $user->userPermissions = $user->getPermissionNames();
-            $user->sv_id = Svby::first()->select('sv_id')->where('student_id', $user->id)->get();
-            $user->sv_name = User::first()->select('name')->where('id', $user->sv_id)->get();
-            $user->cluster_id = Cluster::find($user->cluster_id)->name;
+        //    $user->sv_id = Svby::first()->select('sv_id')->where('student_id', $user->id)->get();
+        //    $user->sv_name = User::first()->select('name')->where('id', $user->sv_id)->get();
+        //    $user->cluster_id = Cluster::find($user->cluster_id)->name;
+            $user->newid = $this->count++;
             return $user;
         });
  

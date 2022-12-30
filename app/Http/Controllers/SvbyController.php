@@ -96,4 +96,12 @@ class SvbyController extends Controller
 
     }
 
+    public function getSVby(){
+        $svbies = Svby::latest()->get();
+
+        return response()->json([ 
+            'svbies' => $svbies
+        ], 200);
+    }
+
 }
