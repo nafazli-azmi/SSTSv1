@@ -310,6 +310,7 @@ components: { loading },
         this.getUsers();
         this.getRoles();
         this.getPermissions();
+        
         Fire.$on('loadUser', () => {
             this.getUsers();
         });

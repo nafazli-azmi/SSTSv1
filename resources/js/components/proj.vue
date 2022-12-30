@@ -173,12 +173,11 @@ components: { loading },
         },
     },//methods
     created(){
-        this.getStuds();
-        this.getLects();
-        this.getSvby();
-        Fire.$on('loadUser', () => {
-            this.getStuds();
-        });
+      //  this.getStuds();
+      //  this.getLects();
+    //    this.getSvby();
+     //   Fire.$on('loadUser', () => {
+    //   });
     }//created
 }
 </script>

@@ -26,9 +26,9 @@ Vue.component('user', require('./components/user.vue').default)
 
 Vue.component('loading', require('./components/loading.vue').default)
 
-Vue.component('lect', require('./components/lect.vue').default)
+//Vue.component('lect', require('./components/lect.vue').default)
 
-Vue.component('stud', require('./components/stud.vue').default)
+//Vue.component('stud', require('./components/stud.vue').default)
 
 
 
