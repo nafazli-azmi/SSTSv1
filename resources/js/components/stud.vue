@@ -24,6 +24,7 @@
                 <table class="table table-bordered">
                     <thead class="bg-primary text-white">
                         <tr>
+                            <th>no</th>
                             <th>ID</th>
                             <th>Name</th>
                             <th>Cluster</th>
@@ -35,11 +36,12 @@
                     </thead>
                     <tbody>
                         <tr v-for="user in users" :key="user.id">
+                            <td>{{ user.newid }}</td>
                             <td>{{ user.id }}</td>
                             <td>{{ user.name }}</td>
                             <td>{{ user.cluster_id}}</td>
                             <td>Project Title</td>
-                            <td>{{ user.sv_id}}</td>
+                            <td>{{ user.sv_name}}</td>
                             <td>
                                 <button class="btn btn-sm btn-info" @click="assignMode(user)"> <i class="fas fa-user-astronaut"></i> Assign Supervisor</button>
                                 <!-- <button  class="btn btn-sm btn-warning" @click="editUser(user)"> <i class="fa fa-edit"></i> Edit</button>
@@ -64,7 +66,16 @@
                     <form @submit.prevent="assignSV()">            
                         <div class="modal-body">
 
-
+<!-- update here -->
+<!-- update here -->
+<!-- update here -->
+<!-- update here -->
+<!-- update here -->
+<!-- update here -->
+<!-- update here -->
+<!-- update here -->
+<!-- update here -->
+<!-- update here -->
                             <!-- form sv -->
                             <div class="form-group">
                                 <label> Choose Supervisor </label>
@@ -136,7 +147,8 @@ components: { loading },
     methods:{
         getStuds(){
             this.loading = true;
-            axios.get("/getStuds")
+          //  axios.get("/getStuds")
+            axios.get("/getStudents")
             .then((response)=>{ 
                 this.loading = false;
                 this.users = response.data.users
@@ -174,8 +186,8 @@ components: { loading },
     },//methods
     created(){
         this.getStuds();
-        this.getLects();
-        this.getSvby();
+      //  this.getLects();
+       // this.getSvby();
         Fire.$on('loadUser', () => {
             this.getStuds();
         });

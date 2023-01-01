@@ -66,47 +66,47 @@ class UserController extends Controller
     public function getStuds(){
         $users = User::role('STUDENT')->get();
         $this->count = 1;
+//aplha      //  $this->sv_id = 1;
         $users->transform(function($user){
             $user->role = $user->getRoleNames()->first();
             $user->userPermissions = $user->getPermissionNames();
         //    $user->sv_id = Svby::first()->select('sv_id')->where('student_id', $user->id)->get();
         //    $user->sv_name = User::first()->select('name')->where('id', $user->sv_id)->get();
-        //    $user->cluster_id = Cluster::find($user->cluster_id)->name;
+            $user->cluster_id = Cluster::find($user->cluster_id)->name;
+          //  $this->sv_id = Svby::get("sv_id")->where('student_id',$user->id);
+
+//alpha            $user->sv_id = $this->sv_id;
+            
+          //  $user->sv_name = User::find('name')->where('id',$this->sv_id)->get();
+         //   $user->sv_name = User::find($this->sv_id)->name;
+
             $user->newid = $this->count++;
             return $user;
         });
- 
-// $pandoras = User::latest()->select('id','name');
 
 
-        // $users->transform(function($user){
-        //     $user->sv_id = Svby::first()->select('sv_id')->where('student_id', $user->id)->get();
-        //     // $user -> svname = User::latest()->select('name')->where('id', $user->svid)->get();
-        //     // $user->sv_name = User::first(($user->sv_id))->select('name');                 
-            
+        $users->transform(function($user){
 
-
-        //     return $user;
-        // });       
-
-        // $users->transform(function($user){
-        //     $user -> svname = User::latest()->select('name as svname')->where('id', $user->svid)->get();
-        //     return $user;
-        // }); 
-
-        //  $users->transform(function($user){
-        //      $user->sv_name = User::first($user->sv_id)->select('name');                 
-        //      return $user;
-        //  });
+        //    $user->svid = Svby::select('sv_id')->where('student_id',$user->id);
+   //     $user->svid = Svby::where('student_id','=',$user->id)
+     //                   ->first()->get('sv_id');
         
-    //     $user->svid = Svby::first()->select('sv_id')->where('student_id', $user->id)->get();
+ //alpha          // $user->sv_name = User::find($this->sv_id)->name;
+ //alpha          $user->sv_name = User::find($user->sv_id)->name;
 
-    //   $users->transform(function($user){
 
-    //           $user->svname = User::find($user->svid)->name;
-    //           return $user;
-    //          });
 
+
+           // $user->newid = $this->count++;
+            return $user;
+        
+        });
+
+
+
+
+
+ 
         
         return response()->json([ 
             'users' => $users

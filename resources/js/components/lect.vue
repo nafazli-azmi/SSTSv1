@@ -28,9 +28,8 @@
                             <th>ID</th>
                             <th>Name</th>
                             <th>Cluster</th>
-                            <th>Action</th>
                             <th>No. of Students</th>
-
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -39,12 +38,12 @@
                             <td>{{ user.id }}</td>
                             <td>{{ user.name }}</td>
                             <td>{{ user.cluster_id }}</td>
-                            <td>
-                                <!-- <button class="btn btn-sm btn-info" @click="assignMode(user)"> <i class="fas fa-user-astronaut"></i> Assign Supervisor</button> -->
-                                <!-- <button  class="btn btn-sm btn-warning" @click="editUser(user)"> <i class="fa fa-edit"></i> Edit</button>
-                                <button  class="btn btn-sm btn-danger" @click="deleteUser(user)"> <i class="fa fa-trash"></i> Delete </button> -->
-                            </td>
                             <td>{{ user.nostu }}</td>
+                            <td>
+                                <button class="btn btn-sm btn-info" @click="assignMode(user)"> <i class="fas fa-user-astronaut"></i> Assign Supervisor</button>
+                                <button  class="btn btn-sm btn-warning" @click="editUser(user)"> <i class="fa fa-edit"></i> Edit</button>
+                                <button  class="btn btn-sm btn-danger" @click="deleteUser(user)"> <i class="fa fa-trash"></i> Delete </button>
+                            </td>
 
                         </tr>
                     </tbody>
