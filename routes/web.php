@@ -56,7 +56,7 @@ Route::get("/getAllUsers", "UserController@getAll");    //view user list
 Route::get("/getLects", "UserController@getLects");    //view user list
 Route::get("/getStuds", "UserController@getStuds");    //view user list
 Route::get("/getSVby", "SvbyController@getSVby");    //view user list
-Route::get("/getStudents", "StudentController@getStudents");    //view user list
+Route::get("/getStudents", "StudentsController@getStudents");    //view user list
 
 
 Route::post('/account/create', 'UserController@store');         //create user

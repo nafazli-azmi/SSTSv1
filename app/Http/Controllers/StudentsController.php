@@ -93,14 +93,14 @@ class StudentsController extends Controller
 
     public function getStudents(){
         $users = User::role('STUDENT')->get();
-        $this->count = 1;
+        $this->count = 3;
 //aplha      //  $this->sv_id = 1;
         $users->transform(function($user){
             $user->role = $user->getRoleNames()->first();
             $user->userPermissions = $user->getPermissionNames();
         //    $user->sv_id = Svby::first()->select('sv_id')->where('student_id', $user->id)->get();
         //    $user->sv_name = User::first()->select('name')->where('id', $user->sv_id)->get();
-            $user->cluster_id = Cluster::find($user->cluster_id)->name;
+
           //  $this->sv_id = Svby::get("sv_id")->where('student_id',$user->id);
 
 //alpha            $user->sv_id = $this->sv_id;
