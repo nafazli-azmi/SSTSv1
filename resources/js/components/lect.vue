@@ -6,19 +6,6 @@
                     <i class="fas fa-users mr-2 fa-lg" style="color: #339af0;"></i>
                     Lecturers List
                 </h3>
-                <div class="card-tools">
-                    <ul class="nav nav-pills ml-auto">
-                        <li class="nav-item">
-                            <div class="input-group mt-0 input-group-md" style="width: 350px;">
-                                <input type="text" name="table_search" v-model="searchWord" class="form-control float-right" placeholder="Search by name">
-
-                                <div class="input-group-append">
-                                    <button type="submit" class="btn btn-md" ><i class="fas fa-search"></i></button>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
             </div><!-- /.card-header -->
             <div class="card-body table-responsive p-0">
                 <table class="table table-bordered">
@@ -29,7 +16,7 @@
                             <th>Name</th>
                             <th>Cluster</th>
                             <th>No. of Students</th>
-                            <th>Action</th>
+                            <!-- <th>Action</th> -->
                         </tr>
                     </thead>
                     <tbody>
@@ -39,11 +26,9 @@
                             <td>{{ user.name }}</td>
                             <td>{{ user.cluster_id }}</td>
                             <td>{{ user.nostu }}</td>
-                            <td>
-                                <button class="btn btn-sm btn-info" @click="assignMode(user)"> <i class="fas fa-user-astronaut"></i> Assign Supervisor</button>
-                                <button  class="btn btn-sm btn-warning" @click="editUser(user)"> <i class="fa fa-edit"></i> Edit</button>
-                                <button  class="btn btn-sm btn-danger" @click="deleteUser(user)"> <i class="fa fa-trash"></i> Delete </button>
-                            </td>
+                            <!-- <td>
+                               <button  class="btn btn-sm btn-danger" @click="deleteUser(user)"> <i class="fa fa-trash"></i> Delete </button>
+                            </td> -->
 
                         </tr>
                     </tbody>
@@ -104,6 +89,7 @@ components: { loading },
                 this.svbies = response.data.svbies
             });           
         },
+
     },//methods
     created(){
         this.getSVby();
