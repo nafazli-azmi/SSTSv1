@@ -92,10 +92,12 @@ class StudentsController extends Controller
          ->get();
         
 
-    // $students = User::latest()
-    //     ->where('role_id',3)
-    //     ->get();            
-     $students = Svby::first()
+     $studentname = User::find($id)->name;
+
+
+       //  dd($student1);
+
+     $student = Svby::first()
          ->where('student_id', $id)
          ->select('student_id','sv_id')
 
@@ -120,7 +122,7 @@ class StudentsController extends Controller
     //dd($svt);
     
     
- $students->transform(function($student){
+ $student->transform(function($student){
          $student->studentid = $student->student_id;
 
          $student->name = User::find($student->student_id)->name;
@@ -133,7 +135,18 @@ class StudentsController extends Controller
          return $student;
          });
 
-      //  dd($students);
+
+
+//MMMMEEEERRRRGGGGEEEEEE
+
+
+
+
+
+
+
+
+//  dd($students);
 //   foreach ($students as $student) {
 //     if ($student->studentid == $id) {
 //         $this->student1 = $student;
@@ -185,7 +198,7 @@ class StudentsController extends Controller
         return view("stud.edit",
             [
            //  'student' => $students[$id],
-             'student' => $students,
+             'student' => $studentname,
                 // 'student' => array_where($students, select ($id, $studentid) {
                 //     return $value
                 // });,

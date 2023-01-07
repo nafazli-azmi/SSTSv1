@@ -21,7 +21,10 @@ Edit Student
                                 <form class="form-horizontal" method="POST" action="{{ route('user.postProfile') }}">
     
                                     <div>
-   {{ time() }}
+
+
+<h1>{{$student}}</h1>
+
                                     </div>
 
                                             <div class="form-group">                                
