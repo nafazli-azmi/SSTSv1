@@ -65,5 +65,5 @@ Route::delete('/delete/user/{id}', 'UserController@delete');    //softdelete
 Route::get('/search/user', 'UserController@search');            //search user
 Route::put('/assign/sv', 'SvbyController@assign');
 
-Route::get('edit/{id}', 'StudentsController@edit')->name('student.edit');
+Route::get('/edit/{id}', 'StudentsController@edit')->name('student.edit');
 Route::post('postedit', 'StudentsController@postedit')->name('student.postedit');
