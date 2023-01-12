@@ -10,7 +10,7 @@ Edit Student
         <div class="row">
             <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header bg-primary"  >
                         <h4>Edit Student</h4>
                     </div>
                     <div class="card-body">
@@ -22,8 +22,8 @@ Edit Student
     
                                     <div>
 
-
-<h1>{{$student}}</h1>
+Student name:
+<h3>{{$student}}</h3>
 
                                     </div>
 
