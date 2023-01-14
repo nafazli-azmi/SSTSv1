@@ -8,7 +8,7 @@ Edit Student
 <section class="content">
     <div class="">
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header bg-primary"  >
                         <h4>Edit Student</h4>
@@ -21,10 +21,12 @@ Edit Student
                                 <form class="form-horizontal" method="POST" action="{{ route('user.postProfile') }}">
     
                                     <div>
-
 Student name:
 <h3>{{$student}}</h3>
-
+                                    </div>
+                                    <div>
+Current SV's name:
+<h3>{{$svname}}</h3>
                                     </div>
 
                                             <div class="form-group">                                

@@ -39,6 +39,8 @@ class StudentsController extends Controller
             return $student;
         });
 
+
+
         //   dd($students);
 
         return view('stud.index', 
@@ -98,6 +100,8 @@ class StudentsController extends Controller
          ->select('student_id','sv_id')
 
          ->get();
+    
+        $svname;
 
     $student->transform(function($student){
          $student->studentid = $student->student_id;
@@ -107,14 +111,21 @@ class StudentsController extends Controller
          $student->cluster_id = User::find($student->student_id)->cluster_id;
          $student->cluster_name = Cluster::find($student->cluster_id)->name;
          $student->sv_name = User::find($student->sv_id)->name;
+     
          $student->created_at =User::find($student->student_id)->created_at;
          return $student;
          });
 
+    $student->transform(function($student){
+        $this->svname =$student->sv_name;
+        return $this->svname;
+    });
+
         return view("stud.edit",
             [
             'student' => $studentname,
-            'svs' => $svs   
+            'svs' => $svs,
+            'svname' => $this->svname
             ]
         );
     }
