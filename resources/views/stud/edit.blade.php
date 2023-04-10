@@ -13,55 +13,58 @@ Edit Student
                     <div class="card-header bg-primary"  >
                         <h4>Edit Student</h4>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" >
                         <div>
 
-                            <div>
+                            <div > <!-- form -->
 
                                 <form class="form-horizontal" method="POST" action="{{ route('user.postProfile') }}">
-    
-                                    <div>
-Student name:
-<h3>{{$student}}</h3>
-                                    </div>
-                                    <div>
-Current SV's name:
-<h3>{{$svname}}</h3>
-                                    </div>
+  
+                                    <font size="+2">Student name:</font>
+                                    
+                                            <h3>{{$student}}</h3>
 
-                                            <div class="form-group">                                
-                                            <label>Select</label>
-                                            <select class="form-control" name="svname">
-                                                <option value="">Choose SV</option>
-                                                @foreach($svs as $sv)
-                                                <option value="{{$sv->id}}">{{$sv->name}}</option>
+                            <br></br>
+                        
+                                Current SV's name:
+                                <h3>{{$svname}}</h3>
+                            
+
+                            <div class="form-group">                                
+                                <label>Select</label>
+                                <select class="form-control" name="svname">
+                                    <option value="">Choose SV</option>
+                                    @foreach($svs as $sv)
+                                    <option value="{{$sv->id}}">{{$sv->name}}</option>
 
 
-                                                @endForeach 
-                                            </select>
-                                            </div>
-                                            <!-- <div class="form-group">
-                                                <label for="email">Email Address</label>
-                                                <input type="email" name="email"  id="email" class="form-control @error('email') is-invalid @enderror" value="{{ auth()->user()->email }}" placeholder="E-mail Address">
-                                                @error('siteemail')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div> -->
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-group button">
-                                                <button type="submit" class="btn btn-primary"><i class="fas fa-user-edit"></i> Update Profile</button>
-                                                <!-- <a role="button" href="admin/index.html" class="bizwheel-btn theme-2">Login</a> -->
-                                            </div>
-                                        </div>
+                                    @endForeach 
+                                </select>
+                            </div>
+                            <div class="card-body">
+                                <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                <span class="input-group-text">Student's Name</span>
+                                </div>
+                                <input type="text" class="form-control" placeholder={{$student}} disabled>
+                                </div>
+                            </div>
+                                            
+                            </div>
+                                <div class="col-12">
+                                    <div class="form-group button">
+                                        <button type="submit" class="btn btn-primary"><i class="fas fa-user-edit"></i> Update Profile</button>
+                                        <!-- <a role="button" href="admin/index.html" class="bizwheel-btn theme-2">Login</a> -->
                                     </div>
-                               </form> 
+                                </div>
+                            </div>
+                            </form> 
 
                             </div>
 
+
                         </div>
+                            
                     </div>
                 </div> <!--edit profile-->
             </div> <!--body-->

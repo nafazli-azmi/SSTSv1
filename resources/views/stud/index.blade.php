@@ -7,8 +7,6 @@ Student
 @section('content')
 <div class="p-0">
 
-
-        
             <!-- small card -->
             <div class="small-box bg-info">
               <div class="inner">

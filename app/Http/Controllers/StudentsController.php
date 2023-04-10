@@ -102,19 +102,19 @@ class StudentsController extends Controller
          ->get();
     
         $svname;
+   
 
     $student->transform(function($student){
-         $student->studentid = $student->student_id;
-
          $student->name = User::find($student->student_id)->name;
          $student->email = User::find($student->student_id)->email;
          $student->cluster_id = User::find($student->student_id)->cluster_id;
          $student->cluster_name = Cluster::find($student->cluster_id)->name;
-         $student->sv_name = User::find($student->sv_id)->name;
-     
+         $student->sv_name = User::find($student->sv_id)->name;     
          $student->created_at =User::find($student->student_id)->created_at;
          return $student;
          });
+
+
 
     $student->transform(function($student){
         $this->svname =$student->sv_name;
@@ -125,7 +125,8 @@ class StudentsController extends Controller
             [
             'student' => $studentname,
             'svs' => $svs,
-            'svname' => $this->svname
+            'svname' => $this->svname,
+            'stuid' => $id
             ]
         );
     }
